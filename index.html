@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sonidhan Zambia Ltd</title>
+<title>Sonidhan Zambia Ltd | 4x4 Spare Parts, Lusaka</title>
+<meta name="description" content="Toyota and Ford 4x4 spare parts in Lusaka. Bumpers, lamps, radiators, suspension, tyres, batteries, engine and service parts. 3 shops in Panganani and near ZRA Head Office.">
+<meta name="theme-color" content="#111317">
+<meta property="og:title" content="Sonidhan Zambia Ltd">
+<meta property="og:description" content="Toyota and Ford 4x4 spare parts. 3 shops in Lusaka.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23D7140F'/%3E%3Ctext x='32' y='45' font-family='Arial,sans-serif' font-weight='900' font-size='38' fill='white' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -36,11 +42,16 @@
   .logo small{display:block;font-size:10.5px;font-weight:600;letter-spacing:.22em;color:var(--muted);margin-top:4px}
   .links{display:flex;align-items:center;gap:2px}
   .links a{padding:10px 15px;font-weight:600;font-size:15px;color:var(--ink-2);border-bottom:2px solid transparent}
-  .links a:hover{color:var(--red)}
+  .links a:not(.btn):hover{color:var(--red)}
   .links a.active{color:var(--red);border-color:var(--red)}
+  .links a.btn,.links a.btn:hover{color:#fff;border-bottom:0}
+  a:focus-visible,button:focus-visible,.part:focus-visible,.shop:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
   .links .btn{margin-left:12px;border:0;color:#fff}
   .burger{display:none;background:none;border:0;cursor:pointer;padding:8px}
-  .burger span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0}
+  .burger span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;transition:transform .2s,opacity .2s}
+  .burger.x span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .burger.x span:nth-child(2){opacity:0}
+  .burger.x span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:50px;padding:0 24px;font-weight:700;font-size:15px;border-radius:8px;border:0;cursor:pointer;font-family:inherit;transition:background .15s,color .15s}
   .btn.red{background:var(--red);color:#fff}
@@ -57,11 +68,14 @@
 
   /* hero */
   .hero{position:relative;height:calc(100vh - 110px);min-height:560px;max-height:860px;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;background:#14171c;overflow:hidden}
-  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s}
+  .hero img.ok{opacity:1}
+  .hero .facts{display:flex;gap:28px;justify-content:center;margin-top:44px;font-size:14px;color:rgba(255,255,255,.7);flex-wrap:wrap}
+  .hero .facts b{color:#fff;font-weight:700}
   .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,12,15,.55),rgba(10,12,15,.7) 60%,rgba(10,12,15,.85))}
   .hero .in{position:relative;z-index:2;padding:0 24px}
   .hero h1{font-size:clamp(56px,11vw,150px);font-weight:900;letter-spacing:-.04em;line-height:.9;text-transform:uppercase}
-  .hero h2{font-size:clamp(15px,1.6vw,20px);font-weight:600;letter-spacing:.42em;text-transform:uppercase;margin-top:18px;color:rgba(255,255,255,.9)}
+  .hero h2{font-size:clamp(15px,1.6vw,20px);font-weight:600;letter-spacing:.42em;padding-left:.42em;text-transform:uppercase;margin-top:18px;color:rgba(255,255,255,.9)}
   .hero p{margin-top:26px;color:rgba(255,255,255,.7);font-size:16px}
   .hero .ctas{margin-top:34px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
   .stripe{height:5px;display:flex}
@@ -83,6 +97,8 @@
   .car div{position:absolute;z-index:2;left:20px;bottom:18px;color:#fff}
   .car small{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75)}
   .car b{display:block;font-size:24px;font-weight:800;letter-spacing:-.02em}
+  .car u{display:inline-block;margin-top:8px;text-decoration:none;font-size:13px;font-weight:600;color:var(--yellow);opacity:0;transform:translateY(4px);transition:.25s}
+  .car:hover u{opacity:1;transform:none}
 
   /* categories */
   .cats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -107,8 +123,24 @@
   .part .ph em{position:absolute;left:0;bottom:0;height:4px;width:48px}
   .part .bd{padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px}
   .part h3{font-size:17px;font-weight:700;letter-spacing:-.01em}
-  .part .bd span{font-size:13px;font-weight:700;color:var(--red);white-space:nowrap}
+  .part .bd span{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#1DAA4E;white-space:nowrap}
+  .part .bd span svg{width:15px;height:15px;fill:currentColor}
+  .tools{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:24px;flex-wrap:wrap}
+  .search{position:relative;width:min(380px,100%)}
+  .search input{padding-left:42px;background:#fff}
+  .search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:var(--muted);fill:none;stroke-width:2}
+  .count{color:var(--muted);font-size:14px;font-weight:500}
+  .empty{display:none;padding:40px;text-align:center;color:var(--muted);background:#fff;border:1px dashed #cfd3d9;border-radius:10px}
+  .empty a{color:var(--red);font-weight:700}
   .parts.home .part:nth-child(n+9){display:none}
+
+  .visit{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .visit a{display:block;padding:24px;border:1px solid var(--line);border-radius:10px;border-top:4px solid var(--ink);transition:border-color .15s}
+  .visit a:hover{border-top-color:var(--red)}
+  .visit small{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+  .visit b{display:block;font-size:19px;margin-top:6px;letter-spacing:-.01em}
+  .visit p{color:var(--muted);font-size:14.5px;margin-top:6px}
+  .visit u{display:inline-block;margin-top:14px;text-decoration:none;font-weight:600;font-size:14px;color:var(--blue)}
 
   /* call band */
   .band{background:var(--red);color:#fff;padding:56px 0}
@@ -163,6 +195,7 @@
   input,select,textarea{width:100%;height:48px;padding:0 14px;border:1px solid #CDD1D7;border-radius:8px;font:inherit;font-size:15px;background:#fff;color:var(--ink)}
   textarea{height:110px;padding:12px 14px;resize:vertical}
   input:focus,select:focus,textarea:focus{outline:2px solid var(--blue);outline-offset:-1px;border-color:var(--blue)}
+  .sent{display:none;margin-top:14px;padding:12px 14px;border-radius:8px;background:#E8F7EE;color:#136B33;font-weight:600;font-size:14px}
   .side{background:var(--ink);color:#fff;border:0}
   .side p{color:#A8AEB8;margin:8px 0 22px}
   .side dl{margin-top:26px;border-top:1px solid #2C3038}
@@ -183,7 +216,7 @@
   @media (max-width:1000px){
     .parts{grid-template-columns:repeat(3,1fr)}
     .cars{grid-template-columns:repeat(2,1fr)}
-    .shops,.contact{grid-template-columns:1fr}
+    .shops,.contact,.visit{grid-template-columns:1fr}
     .map{position:relative;top:0;height:440px;min-height:0}
     footer .cols{grid-template-columns:1fr}
   }
@@ -200,6 +233,7 @@
     .g2{grid-template-columns:1fr}
     section{padding:60px 0}
     .hero{height:auto;padding:110px 0}
+    .hero .facts{gap:8px 18px;margin-top:32px}
   }
 </style>
 </head>
@@ -212,7 +246,7 @@
 
 <nav><div class="wrap">
   <a href="#home" class="logo">Sonidhan <span>Zambia</span><small>Limited</small></a>
-  <button class="burger" aria-label="Menu" onclick="document.querySelector('.links').classList.toggle('open')"><span></span><span></span><span></span></button>
+  <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <div class="links">
     <a href="#home">Home</a>
     <a href="#parts">Parts</a>
@@ -234,13 +268,14 @@
         <a href="#parts" class="btn red">View Parts</a>
         <a class="btn line waLink" target="_blank"><svg viewBox="0 0 32 32"><use href="#wa"/></svg>WhatsApp Us</a>
       </div>
+      <div class="facts"><span><b>15+</b> part types</span><span><b>3</b> shops in Lusaka</span><span><b>Toyota</b> &amp; <b>Ford</b> 4x4</span></div>
     </div>
   </header>
   <div class="stripe"><i style="background:var(--red)"></i><i style="background:var(--orange)"></i><i style="background:var(--yellow)"></i><i style="background:var(--blue)"></i></div>
 
   <section>
     <div class="wrap">
-      <div class="head"><div><h2 class="h2">Vehicles we cover</h2></div></div>
+      <div class="head"><div><h2 class="h2">Vehicles we cover</h2><p>Pick your vehicle and tell us the part.</p></div></div>
       <div class="cars" id="cars"></div>
     </div>
   </section>
@@ -255,6 +290,16 @@
     </div>
   </section>
 
+  <section>
+    <div class="wrap">
+      <div class="head">
+        <div><h2 class="h2">Visit us</h2><p>Three shops across Lusaka.</p></div>
+        <a href="#shops" class="more">View on map</a>
+      </div>
+      <div class="visit" id="visit"></div>
+    </div>
+  </section>
+
   <div class="band"><div class="wrap">
     <div><h2 class="h2">Call or WhatsApp for prices</h2><p>Open at 3 locations in Lusaka.</p></div>
     <div class="nums" id="bandNums"></div>
@@ -264,7 +309,14 @@
 <!-- PARTS -->
 <main class="page" id="page-parts">
   <div class="phead"><div class="wrap"><h1 class="h2">Parts</h1><p>Tap any part to enquire on WhatsApp.</p></div></div>
-  <section class="grey"><div class="wrap"><div class="parts" id="partsAll"></div></div></section>
+  <section class="grey" style="padding-top:40px"><div class="wrap">
+    <div class="tools">
+      <label class="search" style="margin:0"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="q" type="search" placeholder="Search parts" aria-label="Search parts"></label>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="parts" id="partsAll"></div>
+    <div class="empty" id="empty">Not listed? <a class="waLink" target="_blank">Ask us on WhatsApp</a>, we probably have it.</div>
+  </div></section>
 </main>
 
 <!-- SHOPS -->
@@ -297,7 +349,8 @@
           <div><label>Part</label><select name="part" id="partSel"></select></div>
         </div>
         <label>Details</label><textarea name="msg" placeholder="Year, model, part number if you have it"></textarea>
-        <button class="btn red" type="submit" style="margin-top:20px;width:100%">Send Enquiry</button>
+        <button class="btn red" type="submit" style="margin-top:20px;width:100%">Send Enquiry via WhatsApp</button>
+        <div class="sent" id="sent">WhatsApp opened with your enquiry. Hit send there to reach us.</div>
       </form>
       <div class="card side">
         <h3>WhatsApp</h3>
@@ -312,7 +365,7 @@
 <footer><div class="wrap">
   <div class="cols">
     <div><h4>Sonidhan Zambia Ltd</h4><p>Toyota and Ford 4x4 spare parts, Lusaka.</p></div>
-    <div><h4>Phone</h4><ul id="footNums"></ul></div>
+    <div><h4>Contact</h4><ul id="footNums"></ul></div>
     <div><h4>Shops</h4><ul id="footShops"></ul></div>
   </div>
   <div class="base">© <span id="yr"></span> Sonidhan Zambia Ltd</div>
@@ -380,24 +433,46 @@ document.querySelectorAll(".waLink").forEach(a => a.href = wa("Hi Sonidhan, I'm 
 $("#topNums").innerHTML = CONFIG.phones.map(p => `<a href="${tel(p)}">${esc(p)}</a>`).join("");
 $("#bandNums").innerHTML = CONFIG.phones.map(p => `<a class="btn white" href="${tel(p)}">${esc(p)}</a>`).join("")
   + `<a class="btn wa waLink" href="${wa("Hi Sonidhan, I'm looking for a part.")}" target="_blank"><svg viewBox="0 0 32 32"><use href="#wa"/></svg>WhatsApp</a>`;
-$("#footNums").innerHTML = CONFIG.phones.map(p => `<li><a href="${tel(p)}">${esc(p)}</a></li>`).join("");
+$("#footNums").innerHTML = CONFIG.phones.map(p => `<li><a href="${tel(p)}">${esc(p)}</a></li>`).join("")
+  + `<li><a href="${wa("Hi Sonidhan, I'm looking for a part.")}" target="_blank">WhatsApp</a></li>`;
+let pendingShop = 0;
+hero.onload = () => hero.classList.add("ok");
+if (hero.complete && hero.naturalWidth) hero.classList.add("ok");
+$("#visit").innerHTML = CONFIG.shops.map((s,i) => `
+  <a href="#shops" data-shop="${i}"><small>Shop ${i+1}</small><b>${esc(s.name)}</b><p>${esc(s.address)}</p><u>See on map</u></a>`).join("");
+document.querySelectorAll("#visit a").forEach(a => a.addEventListener("click", () => { pendingShop = +a.dataset.shop; }));
+
 $("#footShops").innerHTML = CONFIG.shops.map(s => `<li>${esc(s.address)}</li>`).join("");
 
 // vehicles
 $("#cars").innerHTML = CONFIG.cars.map(c => `
-  <a class="car" href="#parts">
+  <a class="car" href="#contact" data-veh="${esc(c.make)} ${esc(c.name)}">
     <img src="${esc(c.img)}" alt="${esc(c.make)} ${esc(c.name)}" loading="lazy" onerror="this.remove()">
-    <div><small>${esc(c.make)}</small><b>${esc(c.name)}</b></div>
+    <div><small>${esc(c.make)}</small><b>${esc(c.name)}</b><u>Enquire for ${esc(c.name)}</u></div>
   </a>`).join("");
 
 // parts
 const partCard = (p,i) => `
-  <div class="part" data-part="${esc(p.name)}">
+  <div class="part" data-part="${esc(p.name)}" role="button" tabindex="0">
     <div class="ph"><img src="${esc(p.img)}" alt="${esc(p.name)}" loading="lazy" onerror="this.remove()"><em style="background:${ACC[i%4]}"></em></div>
-    <div class="bd"><h3>${esc(p.name)}</h3><span>Enquire</span></div>
+    <div class="bd"><h3>${esc(p.name)}</h3><span><svg viewBox="0 0 32 32"><use href="#wa"/></svg>Enquire</span></div>
   </div>`;
 $("#partsAll").innerHTML = CONFIG.parts.map(partCard).join("");
 $("#partsHome").innerHTML = CONFIG.parts.map(partCard).join("");
+document.addEventListener("keydown", e => {
+  if ((e.key === "Enter" || e.key === " ") && e.target.matches(".part")) { e.preventDefault(); e.target.click(); }
+});
+// search
+const q = $("#q"), allCards = [...document.querySelectorAll("#partsAll .part")];
+function filter(){
+  const t = q.value.trim().toLowerCase(); let n = 0;
+  allCards.forEach(c => { const hit = c.dataset.part.toLowerCase().includes(t); c.style.display = hit ? "" : "none"; n += hit; });
+  $("#count").textContent = `${n} of ${allCards.length} parts`;
+  $("#empty").style.display = n ? "none" : "block";
+}
+q.addEventListener("input", filter); filter();
+// vehicle cards preselect vehicle in form
+document.querySelectorAll(".car").forEach(a => a.addEventListener("click", () => { $("#vehSel").value = a.dataset.veh; }));
 document.addEventListener("click", e => {
   const li = e.target.closest(".part[data-part]");
   if (li) window.open(wa(`Hi Sonidhan, I need ${li.dataset.part}.\nVehicle: `), "_blank");
@@ -494,6 +569,7 @@ $("#contactInfo").innerHTML =
 $("#enqForm").addEventListener("submit", e => {
   e.preventDefault();
   const f = new FormData(e.target);
+  $("#sent").style.display = "block";
   window.open(wa(`New enquiry\nName: ${f.get("name")}\nPhone: ${f.get("phone")}\nVehicle: ${f.get("vehicle")}\nPart: ${f.get("part")}\nDetails: ${f.get("msg") || "-"}`), "_blank");
 });
 
@@ -503,10 +579,19 @@ function route(){
   const page = document.getElementById("page-" + id) ? id : "home";
   document.querySelectorAll(".page").forEach(p => p.classList.toggle("active", p.id === "page-" + page));
   document.querySelectorAll(".links a[href^='#']").forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + page));
-  document.querySelector(".links").classList.remove("open");
+  document.querySelector(".links").classList.remove("open"); document.querySelector(".burger").classList.remove("x");
   window.scrollTo(0,0);
-  if (page === "shops") requestAnimationFrame(() => { Map_.init(); document.querySelectorAll(".shop")[0] && !document.querySelector(".shop.active") && selectShop(0); });
+  if (page === "shops") requestAnimationFrame(() => { Map_.init(); selectShop(pendingShop); });
 }
+const burger = $(".burger"), links = $(".links");
+burger.addEventListener("click", e => {
+  e.stopPropagation();
+  const open = links.classList.toggle("open");
+  burger.classList.toggle("x", open); burger.setAttribute("aria-expanded", open);
+});
+document.addEventListener("click", e => {
+  if (!e.target.closest(".links")) { links.classList.remove("open"); burger.classList.remove("x"); }
+});
 addEventListener("hashchange", route);
 route();
 </script>
